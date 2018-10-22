@@ -1,0 +1,12 @@
+<h1>Result</h1>
+<% if @result[:status] == :not_in_dictionary %>
+<p>Sorry but <strong><%= "#{params[:word]}" %></strong> does not seem to be a valid English word...</p>
+<% elsif @result[:status] == :not_in_grid %>
+<p>Sorry but <strong><%= "#{params[:word].upcase}" %></strong> can't be built out of <%= "#{params[:grid].split('')}" %></p>
+<% else %>
+<p>Congratulations! <strong><%= "#{params[:word].upcase}" %></strong> is a valid English word!</p>
+<br>
+<p>Your score is: <%= @result[:score_count] %></p>
+<p><strong>Grand Total: <%= session[:score] %></strong></p>
+<% end %>
+<p><%= link_to "Play again", "/new" %></p>
